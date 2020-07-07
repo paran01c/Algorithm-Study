@@ -15,20 +15,22 @@ public class Main {
 
         int[] x = new int[charX.length];
         for (int i = 0, n = x.length; i < n; i++) {
-            x[i] = (int)charX[i];
+            x[i] = Character.getNumericValue(charX[i]);
         }
 
         int[] y = new int[charY.length];
         for (int i = 0, n = y.length; i < n; i++) {
-            y[i] = (int)charY[i];
+            y[i] = Character.getNumericValue(charY[i]);
         }
 
         Operation operation = new Operation();
-        int[] result = operation.KaratsubaMultiply(x, y, x.length, y.length);
+        int[] result = x.length > y.length ? operation.Add(x, y) : operation.Add(y, x);
 
+        //printing result
         for(int i = 0, n = result.length; i < n; i++) {
-            System.out.println(result);
+            System.out.print(result[i]);
         }
+        System.out.println();
     }
 
 }
