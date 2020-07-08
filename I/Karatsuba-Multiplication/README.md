@@ -4,9 +4,9 @@ It can add and multiply 2 numbers
 the multiplication is the classic multiplication
 
 - Input:
-number1
-number2
-symbol
+  - number1
+  - number2
+  - symbol
 	
 - symbols can be
   - '+' for adition
