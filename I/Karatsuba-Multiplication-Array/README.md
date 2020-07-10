@@ -1,4 +1,4 @@
-# Karatsuba method for integer Multiplication
+# Karatsuba method for array Multiplication
 
 It can add and multiply 2 array of int's
 
