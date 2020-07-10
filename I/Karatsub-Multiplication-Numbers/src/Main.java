@@ -36,10 +36,7 @@ public class Main {
             long all = multiplication((a + b),(c + d));
             long lastStep = all - ac - bd;
 
-            long result = ac * (long)Math.pow(10, 2 * halfDigits) + lastStep * (long)Math.pow(10, halfDigits) + bd;
-            System.out.println(result);
-
-            return result;
+            return ac * (long)Math.pow(10, 2 * halfDigits) + lastStep * (long)Math.pow(10, halfDigits) + bd;
         }
     }
 
