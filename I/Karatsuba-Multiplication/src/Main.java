@@ -27,17 +27,18 @@ public class Main {
 
         Operation operation = new Operation();
         int[] result = new int[1];
+
         switch (operationToken) {
             case "+":
-                result = x.length > y.length ? operation.add(x, y) : operation.add(y, x);
+                result = x.length >= y.length ? operation.add(x, y) : operation.add(y, x);
                 break;
             case "*":
-                result = x.length > y.length ? operation.clasicMultiplication(x, y) : operation.clasicMultiplication(y, x);
+                result = x.length >= y.length ? operation.clasicMultiplication(x, y) : operation.clasicMultiplication(y, x);
                 break;
             case "K":
                 //now will return 0 it is not implemented yet
                 System.out.println("Under Construction");
-                result = x.length > y.length ? operation.karatsubaMultiply(x, y) : operation.karatsubaMultiply(y, x);
+                result = x.length >= y.length ? operation.karatsubaMultiply(x, y) : operation.karatsubaMultiply(y, x);
                 break;
             default:
                 System.out.println("Unknown Comand Or Wrong Order");

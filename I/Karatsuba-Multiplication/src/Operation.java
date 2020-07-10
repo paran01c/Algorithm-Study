@@ -3,10 +3,42 @@ import java.util.Arrays;
 public class Operation {
 
     public int[] karatsubaMultiply(int[] x, int[] y) {
-        //add the function
 
-        int[] result = {0};
-        return result;
+
+        int digitsX = x.length;
+        int digitsY = y.length;
+
+        if(digitsX == 1) {
+            return multiplyOneNumber(y, x[0]);
+        } else if( digitsY == 1) {
+            return multiplyOneNumber(x, y[0]);
+        } else {
+
+            int m = digitsX <= digitsY ? digitsX / 2 : digitsY / 2;
+
+            //spliting the numbers by the smallest number half digits
+            int[] a = firstDigits(x, m);
+            int[] b = lastDigits(x, m);
+            int[] c = firstDigits(y, m);
+            int[] d = lastDigits(y, m);
+
+            //revursivly calculating the multiplications
+            int[] ac = karatsubaMultiply(a, c);
+            int[] bd = karatsubaMultiply(b, d);
+            int[] ad = karatsubaMultiply(a, d);
+            int[] bc = karatsubaMultiply(b, c);
+
+            //moving the results by the apropriare amount
+            int[] movedAc = moveBy(ac, 2 * m);
+            int[] remaining = ad.length >= bc.length ? add(ad, bc) : add(bc, ad);
+            int[] moveRemaining = moveBy(remaining, m);
+
+            //calculating step by step
+            int[] firstResult = movedAc.length >= moveRemaining.length ? add(movedAc, moveRemaining) : add(moveRemaining, movedAc);
+            int[] result = bd.length > firstResult.length ? add(bd, firstResult) : add(firstResult, bd);
+
+            return result;
+        }
     }
 
     public int[] add (int[] largest, int[] smallest) {
@@ -81,7 +113,18 @@ public class Operation {
         }
 
         //remove the 0 from the first pozitio if it is there
-        return permanentRow;
+        if(permanentRow[0] == 0) {
+            int[] result = new int[permanentRow.length - 1];
+
+            for(int i = 1, n = permanentRow.length; i < n; i++) {
+                result[i - 1] = permanentRow[i];
+            }
+
+            return result;
+
+        } else {
+            return permanentRow;
+        }
     }
 
     //functions used by clasicmultiplication
@@ -126,18 +169,41 @@ public class Operation {
         }
     }
 
-    private int[] moveBy (int[] array, int moveIndex) {
+    public int[] moveBy (int[] array, int moveIndex) {
         int[] result = new int[array.length + moveIndex];
 
-        for(int i = 0, n = array.length; i <= n; i++){
+        for(int i = 0, n = result.length; i < n; i++){
 
-            if(i != n) {
+            if(i < array.length) {
                 result[i] = array[i];
-            } else  if(i == n){
+            } else{
                 result[i] = 0;
             }
         }
 
         return result;
+    }
+
+    //functions used by karatsuba
+    public int[] firstDigits(int[] array, int digits) {
+        int n = array.length;
+        int[] newNumber = new int[n - digits];
+
+        for(int i = 0; i < n - digits; i++) {
+            newNumber[i] = array[i];
+        }
+
+        return newNumber;
+    }
+
+    public int[] lastDigits(int[] array, int digits) {
+        int n = array.length;
+        int[] newNumber = new int[digits];
+
+        for(int i = n - digits, j = 0; i < n; i++, j++) {
+            newNumber[j] = array[i];
+        }
+
+        return newNumber;
     }
 }

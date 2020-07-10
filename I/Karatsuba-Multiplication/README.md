@@ -1,7 +1,6 @@
 # Karatsuba method for integer Multiplication
 
 It can add and multiply 2 numbers
-the multiplication is the classic multiplication
 
 - Input:
   - number1
@@ -11,6 +10,7 @@ the multiplication is the classic multiplication
 - symbols can be
   - '+' for adition
   - '*' for classic mulitplication
-  - 'K' for Karatsuba multiplication
+  - 'k' for Karatsuba multiplication (it is case sensitive)
 
-*Karatsuba method is not yet implemented it will return 0*
+*Karatsuba method implemented*
+*not at max eficiency need to implement array division*
