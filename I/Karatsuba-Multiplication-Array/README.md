@@ -1,6 +1,6 @@
 # Karatsuba method for integer Multiplication
 
-It can add and multiply 2 numbers
+It can add and multiply 2 array of int's
 
 - Input:
   - number1
