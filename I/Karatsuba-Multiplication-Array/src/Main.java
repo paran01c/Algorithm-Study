@@ -15,18 +15,18 @@ public class Main {
         char[] charX = stringX.toCharArray();
         char[] charY = stringY.toCharArray();
 
-        int[] x = new int[charX.length];
+        byte[] x = new byte[charX.length];
         for (int i = 0, n = x.length; i < n; i++) {
-            x[i] = Character.getNumericValue(charX[i]);
+            x[i] = (byte)Character.getNumericValue(charX[i]);
         }
 
-        int[] y = new int[charY.length];
+        byte[] y = new byte[charY.length];
         for (int i = 0, n = y.length; i < n; i++) {
-            y[i] = Character.getNumericValue(charY[i]);
+            y[i] = (byte)Character.getNumericValue(charY[i]);
         }
 
         Operation operation = new Operation();
-        int[] result = new int[1];
+        byte[] result = new byte[1];
 
         switch (operationToken) {
             case "+":
@@ -36,10 +36,10 @@ public class Main {
                 result = x.length >= y.length ? operation.clasicMultiplication(x, y) : operation.clasicMultiplication(y, x);
                 break;
             case "K":
-                //now will return 0 it is not implemented yet
-                System.out.println("Under Construction");
                 result = x.length >= y.length ? operation.karatsubaMultiply(x, y) : operation.karatsubaMultiply(y, x);
                 break;
+            case "-":
+                result = x.length >= y.length ? operation.sub(x, y) : operation.sub(y, x);
             default:
                 System.out.println("Unknown Comand Or Wrong Order");
                 result[0] = 0;
